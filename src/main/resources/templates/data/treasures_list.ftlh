@@ -1,8 +1,7 @@
 <#import "../layout.ftlh" as layout>
 
 <@layout.default>
-<a href="/data/treasure_create">Add Loot</a> |
-<a href="/data/treasure_remove">Remove Loot</a>
+<a href="/data/treasures/add">Add Treasure</a>
 
 <table class="table">
 
@@ -15,6 +14,8 @@
         <th>Created</th>
         <th>Updated</th>
         <th>Shared</th>
+        <th/>
+        <th/>
     </tr>
 <#list data as treasure>
     <tr>
@@ -27,6 +28,7 @@
         <td>${treasure.updated}</td>
         <td>${treasure.shared}</td>
         <td><a href="/data/treasures/${treasure.id}">Edit</a></td>
+        <td><a href="/data/treasures/${treasure.id}?action=delete">Delete</a></td>
     </tr>
 </#list>
 

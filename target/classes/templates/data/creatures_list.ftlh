@@ -1,8 +1,7 @@
 <#import "../layout.ftlh" as layout>
 
 <@layout.default>
-<a href="/creature/add">Add a Creature</a> |
-<a href="/creature/remove">Remove a Creature</a>
+<a href="/data/creatures/add">Add a Creature</a>
 
 <table class="table">
 
@@ -24,6 +23,8 @@
         <th>Created</th>
         <th>Updated</th>
         <th>Shared</th>
+        <th/>
+        <th/>
     </tr>
 <#list data as creature>
     <tr>
@@ -44,7 +45,8 @@
         <td>${creature.createdate}</td>
         <td>${creature.updated}</td>
         <td>${creature.shared}</td>
-        <td><a href="creature/edit/${creature.id}">Edit</a></td>
+        <td><a href="/data/creatures/${creature.id}">Edit</a></td>
+        <td><a href="/data/creatures/${creature.id}?action=delete">Delete</a></td>
     </tr>
 </#list>
 

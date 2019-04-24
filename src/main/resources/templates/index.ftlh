@@ -1,5 +1,5 @@
 <#import "layout.ftlh" as layout>
 
 <@layout.default>
-gvhghgf
+Encounter Gen
 </@layout.default>

@@ -4,7 +4,6 @@ public class User {
     private Integer id;
     private String name;
     private String password;
-    private transient String verify;
     private String createdate;
     
     
@@ -32,10 +31,5 @@ public class User {
 	public void setCreatedate(String createdate) {
 		this.createdate = createdate;
 	}
-	public String getVerify() {
-		return verify;
-	}
-	public void setVerify(String verify) {
-		this.verify = verify;
-	}
+
 }

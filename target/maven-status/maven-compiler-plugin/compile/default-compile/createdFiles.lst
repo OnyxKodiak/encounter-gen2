@@ -3,6 +3,7 @@ encountergen2\models\User.class
 encountergen2\data\UserDAO.class
 encountergen2\Application.class
 encountergen2\models\Encounter.class
+encountergen2\data\DataType.class
 encountergen2\models\Treasure.class
 encountergen2\data\EncounterDAO.class
 encountergen2\models\Interest.class

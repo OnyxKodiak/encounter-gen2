@@ -1,7 +1,6 @@
 package encountergen2.models;
 
 public class Encounter {
-	private Integer Id;
 	private Integer partylevel;
 	private String environment;
 	private Integer partysize;
@@ -13,12 +12,6 @@ public class Encounter {
 	private Boolean loot;
 	private Integer nummobs;
 	
-	public Integer getId() {
-		return Id;
-	}
-	public void setId(Integer id) {
-		Id = id;
-	}
 	public Integer getPartylevel() {
 		return partylevel;
 	}
