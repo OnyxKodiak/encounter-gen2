@@ -1,7 +1,7 @@
 <#import "../layout.ftlh" as layout>
 
 <@layout.default>
-<a href="/data/interests/add">Add a Point of Interest</a>
+<a href="/data/interests?add=true">Add a Point of Interest</a>
 
 <table class="table">
 

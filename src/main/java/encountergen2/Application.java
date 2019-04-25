@@ -14,10 +14,12 @@ import org.sql2o.Sql2o;
 
 import encountergen2.data.CreatureDAO;
 import encountergen2.data.DataType;
+import encountergen2.data.EncounterDAO;
 import encountergen2.data.InterestDAO;
 import encountergen2.data.TreasureDAO;
 import encountergen2.data.UserDAO;
 import encountergen2.models.Creature;
+import encountergen2.models.Encounter;
 import encountergen2.models.Interest;
 import encountergen2.models.Treasure;
 import encountergen2.models.User;
@@ -43,11 +45,14 @@ public class Application {
 		get("/login", Application::getLogin);
 		get("/data/:type", Application::getData);
 		get("/data/:type/:itemid", Application::getItem);
+		post("/data/:type/:itemid", Application::postItem);
 		post("/login", Application::postLogin);
 		post("/data/:type", Application::postData);
 		post("/register", Application::postRegister);
 		get("/register", Application::getRegister);
 		get("/logout", Application::getLogout);
+		get("/data/encounter_list", Application::getEncounter);
+		post("/data/encounter_list", Application::postEncounter);
 
 	}
 
@@ -179,6 +184,8 @@ public class Application {
 		model.put("user", session.attribute("user"));
 		model.put("data", new Object[0]);
 		String type = request.params(":type");
+//		User user = UserDAO.getUser(sql2o, request.queryParams("name"));
+//		int userid = 
 		if (DataType.isValid(type)) {
 			switch (type) {
 			case "creatures":
@@ -278,6 +285,39 @@ public class Application {
 		Session session = request.session();
 		session.invalidate();
 		response.redirect("/");
+		return null;
+	}
+	
+	public static String getEncounter(Request request, Response response) {
+		Map<String, Object> model = new HashMap<>();
+		Session session = request.session();
+		model.put("user", session.attribute("user"));
+		if(session.attribute("user") != null) {
+			User user = UserDAO.getUser(sql2o, request.queryParams("name"));
+			String userid = user.getName();
+			EncounterDAO.getEncounter(sql2o, userid);
+			return templateEngine.render(new ModelAndView(model, "/data/encounter_list.ftlh"));
+		}
+		response.redirect("/data/encounter_list.fthl");
+		return null;
+	}
+	
+	public static String postEncounter(Request request, Response response) {
+		Map<String, Object> model = new HashMap<>();
+		Session session = request.session();
+		model.put("user", session.attribute("user"));
+		Encounter encounter = new Encounter();
+		encounter.setPartylevel(NumberUtils.toInt(request.queryParams("partylevel")));
+		encounter.setEnvironment(request.queryParams("environment"));
+		encounter.setPartysize(NumberUtils.toInt(request.queryParams("partysize")));
+		encounter.setDifficulty(NumberUtils.toInt(request.queryParams("difficulty")));
+		encounter.setNumencounters(NumberUtils.toInt(request.queryParams("numencounters")));
+		encounter.setFrequency(NumberUtils.toInt(request.queryParams("frequency")));
+		encounter.setUserselect(BooleanUtils.toBooleanObject(request.queryParams("userselect")));
+		encounter.setLoot(BooleanUtils.toBooleanObject(request.queryParams("loot")));
+		encounter.setNummobs(NumberUtils.toInt(request.queryParams("nummobs")));
+		
+		response.redirect("/data/encounter_list.fthl");
 		return null;
 	}
 }

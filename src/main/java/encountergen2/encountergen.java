@@ -1,5 +1,5 @@
 package encountergen2;
 
-public class encountergen {
+public class Encountergen {
 
 }

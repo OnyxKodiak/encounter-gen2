@@ -35,11 +35,12 @@ public class InterestDAO {
 	
 	public static void addInterest(Sql2o sql2o, Interest interest) {
 		try(Connection con = sql2o.open()){
-			con.createQuery("INSERT INTO interests (name, environment, description, shared)"
-					+ " VALUES (:name, :environment, :description, :shared)")
+			con.createQuery("INSERT INTO interests (name, environment, description, userid, shared)"
+					+ " VALUES (:name, :environment, :description, :userid, :shared)")
 					.addParameter("name", interest.getName())
 					.addParameter("type", interest.getEnvironment())
 					.addParameter("description", interest.getDescription())
+					.addParameter("userid", interest.getUserid())
 					.addParameter("shared", interest.getShared())
 					.executeUpdate();
 		}

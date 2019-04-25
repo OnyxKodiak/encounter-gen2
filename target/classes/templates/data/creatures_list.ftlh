@@ -1,7 +1,7 @@
 <#import "../layout.ftlh" as layout>
 
 <@layout.default>
-<a href="/data/creatures/add">Add a Creature</a>
+<a href="/data/creatures?add=true">Add a Creature</a>
 
 <table class="table">
 

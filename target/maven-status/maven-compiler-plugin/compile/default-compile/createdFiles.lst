@@ -8,5 +8,6 @@ encountergen2\models\Treasure.class
 encountergen2\data\EncounterDAO.class
 encountergen2\models\Interest.class
 encountergen2\data\CreatureDAO.class
+encountergen2\Encountergen.class
 encountergen2\data\InterestDAO.class
 encountergen2\models\Creature.class
