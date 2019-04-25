@@ -27,9 +27,8 @@ public class UserDAO {
 	
 	public static void addUser(Sql2o sql2o, User user) {
 		try(Connection con = sql2o.open()){
-			con.createQuery("INSERT INTO users (name, password, createdate, updated)"
-					+ " VALUES (:name, :password, :createdate, :updated)")
-					.addParameter("id", user.getId())
+			con.createQuery("INSERT INTO users (name, password)"
+					+ " VALUES (:name, :password)")
 					.addParameter("name", user.getName())
 					.addParameter("password", user.getPassword())
 					.executeUpdate();

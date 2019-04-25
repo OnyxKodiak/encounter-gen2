@@ -37,9 +37,8 @@ public class TreasureDAO {
 	
 	public static void addTreasure(Sql2o sql2o, Treasure treasure) {
 		try(Connection con = sql2o.open()){
-			con.createQuery("INSERT INTO treasures (name, type, value, description, userid, createdate, updated, shared)"
-					+ " VALUES (:name, :type, :value, :description, :userid, :createdate, :updated, :shared)")
-					.addParameter("id", treasure.getId())
+			con.createQuery("INSERT INTO treasures (name, type, value, description, shared)"
+					+ " VALUES (:name, :type, :value, :description, :shared)")
 					.addParameter("name", treasure.getName())
 					.addParameter("type", treasure.getType())
 					.addParameter("value", treasure.getValue())

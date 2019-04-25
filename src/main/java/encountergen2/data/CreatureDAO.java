@@ -48,9 +48,8 @@ public class CreatureDAO {
 	
 	public static void addCreature(Sql2o sql2o, Creature creature) {
 		try(Connection con = sql2o.open()){
-			con.createQuery("INSERT INTO creatures (name, type, cr, str, dex, con, intl, wis, cha, ac, hp, size, description, userid, createdate, updated, shared)"
-					+ " VALUES (:name, :type, :cr, :str, :dex, :con, :intl, :wis, :cha, :ac, :hp, :size, :description, :userid, :createdate, :updated, :shared)")
-					.addParameter("id", creature.getId())
+			con.createQuery("INSERT INTO creatures (name, type, cr, str, dex, con, intl, wis, cha, ac, hp, size, description, shared)"
+					+ " VALUES (:name, :type, :cr, :str, :dex, :con, :intl, :wis, :cha, :ac, :hp, :size, :description, :shared)")
 					.addParameter("name", creature.getName())
 					.addParameter("type", creature.getType())
 					.addParameter("cr", creature.getCr())
